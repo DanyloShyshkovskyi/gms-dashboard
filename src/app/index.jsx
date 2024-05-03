@@ -1,15 +1,17 @@
-import { withProviders } from './providers'
-import { Footer, Header, Routing } from 'layout'
+import { Header, Routing, Sidebar } from 'layout'
 import { ScrollToTop } from 'shared/controller'
 import './index.css'
+import { withProviders } from './providers'
 
 const App = () => {
   return (
-    <div className={'flex h-screen flex-col'}>
-      <Header />
-      <ScrollToTop />
-      <Routing />
-      <Footer />
+    <div className={'flex h-screen'}>
+      <Sidebar />
+      <section className='w-full'>
+        <Header />
+        <ScrollToTop />
+        <Routing />
+      </section>
     </div>
   )
 }

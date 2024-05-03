@@ -12,6 +12,10 @@ module.exports = {
       },
     },
     extend: {
+      transitionProperty: {
+        width: 'width',
+        spacing: 'margin, padding',
+      },
       keyframes: {
         'accordion-down': {
           from: { height: '0' },

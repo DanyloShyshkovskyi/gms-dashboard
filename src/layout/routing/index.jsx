@@ -1,12 +1,13 @@
+import NotFound from 'pages/NotFound'
 import { Suspense, lazy } from 'react'
-import { Route, Routes } from 'react-router'
+import { Navigate, Route, Routes } from 'react-router'
 import { useToken } from 'shared/api'
 
-const Homepage = lazy(() => import('pages/Home'))
-const About = lazy(() => import('pages/About'))
-const Contact = lazy(() => import('pages/Contact'))
+const Dashboard = lazy(() => import('pages/Dashboard'))
+const Projects = lazy(() => import('pages/Projects'))
+const Contact = lazy(() => import('pages/Bids'))
 
-const fallback = <>..Loaadiinnggg.</>
+const fallback = <></>
 
 export const Routing = () => {
   useToken()
@@ -14,9 +15,11 @@ export const Routing = () => {
   return (
     <Suspense fallback={fallback}>
       <Routes>
-        <Route path='/' element={<Homepage />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/contact' element={<Contact />} />
+        <Route path='/' element={<Navigate to={'/dashboard'} replace />} />
+        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/bids' element={<Contact />} />
+        <Route path='/projects' element={<Projects />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </Suspense>
   )
