@@ -1,0 +1,110 @@
+{
+  "types": [
+    {
+      "label": "All",
+      "value": "all",
+      "count": 10
+    },
+    {
+      "label": "Approved",
+      "value": "approved",
+      "count": 85
+    },
+    {
+      "label": "On Hold",
+      "value": "hold",
+      "count": 25
+    },
+    {
+      "label": "Submitted",
+      "value": "submitted",
+      "count": 31
+    },
+    {
+      "label": "Rejected",
+      "value": "rejected",
+      "count": 63
+    }
+  ],
+  "list": [
+    {
+      "client_name": "McKinsey",
+      "client_code": "ZXC439",
+      "project_name": "Marsh Media Network",
+      "qty": 1330210800000,
+      "estimate": "$55,500",
+      "status": "approved"
+    },
+    {
+      "client_name": "Revolute",
+      "client_code": "ZXC438",
+      "project_name": "Marsh Network",
+      "qty": 1330210800000,
+      "estimate": "$55,500",
+      "status": "hold"
+    },
+    {
+      "client_name": "McKinsey",
+      "client_code": "ZXC439",
+      "project_name": "Marsh Media Network",
+      "qty": 1330210800000,
+      "estimate": "$55,500",
+      "status": "submitted"
+    },
+    {
+      "client_name": "Revolute",
+      "client_code": "ZXC438",
+      "project_name": "Marsh Network",
+      "qty": 1330210800000,
+      "estimate": "$55,500",
+      "status": "rejected"
+    },
+    {
+      "client_name": "McKinsey",
+      "client_code": "ZXC439",
+      "project_name": "Marsh Media Network",
+      "qty": 1330210800000,
+      "estimate": "$55,500",
+      "status": "approved"
+    },
+    {
+      "client_name": "Revolute",
+      "client_code": "ZXC438",
+      "project_name": "Marsh Network",
+      "qty": 1330210800000,
+      "estimate": "$55,500",
+      "status": "hold"
+    },
+    {
+      "client_name": "McKinsey",
+      "client_code": "ZXC439",
+      "project_name": "Marsh Media Network",
+      "qty": 1330210800000,
+      "estimate": "$55,500",
+      "status": "submitted"
+    },
+    {
+      "client_name": "Revolute",
+      "client_code": "ZXC438",
+      "project_name": "Marsh Network",
+      "qty": 1330210800000,
+      "estimate": "$55,500"
+    },
+    {
+      "client_name": "McKinsey",
+      "client_code": "ZXC439",
+      "project_name": "Marsh Media Network",
+      "qty": 1330210800000,
+      "estimate": "$55,500",
+      "status": "approved"
+    },
+    {
+      "client_name": "Revolute",
+      "client_code": "ZXC438",
+      "project_name": "Marsh Network",
+      "qty": 1330210800000,
+      "estimate": "55,500",
+      "status": "hold"
+    }
+  ]
+}
