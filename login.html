@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge,chrome=1" httpEquiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+      rel="icon"
+      type="image/ico"
+      href="https://cdn.basistheory.com/images/favicons/favicon.ico"
+    />
+    <title>React Auth0 Example</title>
+    <script>
+      try {
+        window.auth0Config = JSON.parse(
+          decodeURIComponent(escape(window.atob('@@config@@')))
+        )
+      } catch (error) {
+        window.auth0Config = error
+      }
+    </script>
+  </head>
+  <body>
+    <div data-universal-login="true" id="react-root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+</html>

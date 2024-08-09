@@ -1,0 +1,71 @@
+{
+  "types": [
+    {
+      "label": "Active",
+      "value": "active",
+      "count": 85
+    },
+    {
+      "label": "Completed",
+      "value": "completed",
+      "count": 25
+    },
+    {
+      "label": "Draft",
+      "value": "draft",
+      "count": 31
+    }
+  ],
+  "list": [
+    {
+      "project_name": "Marsh Media Network",
+      "charge_code": "ZXC439",
+      "client_name": "Tesla",
+      "production_date": 1330210800000,
+      "budget": "$55,500",
+      "actual_spent": "$55,500",
+      "budget_actual": "$55,500",
+      "status": "active"
+    },
+    {
+      "project_name": "Marsh Network",
+      "charge_code": "ZXC438",
+      "client_name": "Tesla",
+      "production_date": 1330210800000,
+      "budget": "$55,500",
+      "actual_spent": "$55,500",
+      "budget_actual": "$55,500",
+      "status": "completed"
+    },
+    {
+      "project_name": "Marsh Media Network",
+      "charge_code": "ZXC439",
+      "client_name": "Tesla",
+      "production_date": 1330210800000,
+      "budget": "$55,500",
+      "actual_spent": "$55,500",
+      "budget_actual": "$55,500",
+      "status": "draft"
+    },
+    {
+      "project_name": "Marsh Network",
+      "charge_code": "ZXC438",
+      "client_name": "Tesla",
+      "production_date": 1330210800000,
+      "budget": "$55,500",
+      "actual_spent": "$55,500",
+      "budget_actual": "$55,500",
+      "status": "active"
+    },
+    {
+      "project_name": "Marsh Media Network",
+      "charge_code": "ZXC439",
+      "client_name": "Tesla",
+      "production_date": 1330210800000,
+      "budget": "$55,500",
+      "actual_spent": "$55,500",
+      "budget_actual": "$55,500",
+      "status": "completed"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 export default {
-  printWidth: 120,
+  printWidth: 80,
   useTabs: false,
   tabWidth: 2,
   trailingComma: 'es5',
@@ -9,7 +9,10 @@ export default {
   arrowParens: 'always',
   jsxSingleQuote: true,
   endOfLine: 'lf',
+  importOrder: ['react', '^widget/(.*)$', '<THIRD_PARTY_MODULES>', '^shared/(.*)$', '^[./]'],
+  importOrderSeparation: true,
+  importOrderSortSpecifiers: true,
+  plugins: ['@trivago/prettier-plugin-sort-imports', 'prettier-plugin-tailwindcss'],
   pluginSearchDirs: false,
-  plugins: ['prettier-plugin-tailwindcss'],
   tailwindConfig: './tailwind.config.js',
 }
