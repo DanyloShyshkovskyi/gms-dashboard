@@ -1,1 +1,0 @@
-import{j as o}from"./main-BMuw3lGv.js";import{w as r}from"./index-CNc27Jr-.js";import"./chevron-right-D8DaYJ5O.js";const t=()=>o.jsx("article",{children:"Dashboard view"}),e=r(t),i=()=>o.jsx(e,{badge:{label:"New"}});export{i as Component};

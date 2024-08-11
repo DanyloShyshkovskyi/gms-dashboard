@@ -1,0 +1,1 @@
+import{j as e,J as r,K as i,M as t,O as o,Q as n,T as c,V as x}from"./main2.js";const d=({title:l,description:s,onConfirm:a})=>e.jsxs(r,{className:"sm:max-w-[425px]",children:[e.jsxs(i,{children:[e.jsx(t,{children:l}),e.jsx(o,{children:s})]}),e.jsxs(n,{children:[e.jsx(c,{children:"Cancel"}),e.jsx(x,{onClick:a,children:"Continue"})]})]});export{d as default};
