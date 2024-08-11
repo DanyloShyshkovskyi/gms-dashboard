@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router'
 
 import { apiInstance } from 'shared/api'
-import { WITHOUT_LOGIN } from 'shared/config'
+import { BASE_URL, WITHOUT_LOGIN } from 'shared/config'
 import { getSearchValue } from 'shared/utils'
 
 const anonymousPaths = ['/terms']
@@ -22,7 +22,7 @@ export const useGetToken = () => {
 
   useEffect(() => {
     setLoading(true)
-    if (anonymousPaths.includes(pathname) || WITHOUT_LOGIN === 'true') {
+    if (anonymousPaths.includes(pathname) || WITHOUT_LOGIN) {
       setLoading(false)
       return
     }
@@ -31,7 +31,7 @@ export const useGetToken = () => {
       console.log('User is not authenticated!')
       loginWithRedirect({
         authorizationParams: {
-          redirect_uri: window.location.origin,
+          redirect_uri: window.location.origin + `${BASE_URL}/callback`,
           invitation: getSearchValue('invitation'),
           organization: getSearchValue('organization'),
           organization_name: getSearchValue('organization_name'),

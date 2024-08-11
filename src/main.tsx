@@ -1,14 +1,20 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
-
-import UniversalLoginPage from 'universal-login-page'
 
 import { IS_UNIVERSAL_LOGIN, ROOT } from 'shared/config'
 
 import App from './app'
 
+const UniversalLoginPageLazy = React.lazy(() => import('universal-login-page'))
+
 ReactDOM.createRoot(ROOT).render(
   <React.StrictMode>
-    {IS_UNIVERSAL_LOGIN ? <UniversalLoginPage /> : <App />}
+    {IS_UNIVERSAL_LOGIN ? (
+      <Suspense>
+        <UniversalLoginPageLazy />
+      </Suspense>
+    ) : (
+      <App />
+    )}
   </React.StrictMode>
 )

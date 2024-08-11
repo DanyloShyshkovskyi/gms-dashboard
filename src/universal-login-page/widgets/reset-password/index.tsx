@@ -15,7 +15,7 @@ const PasswordRecovery = ({ email, setEmail }: Props): JSX.Element => {
   const { setMode, changePassword, isBusy } = useWebAuth()
 
   return (
-    <>
+    <div>
       <div>{'Password Recovery'}</div>
       <div>
         {
@@ -44,7 +44,7 @@ const PasswordRecovery = ({ email, setEmail }: Props): JSX.Element => {
           <div>{'Sign In'}</div>
         </Button>
       </div>
-    </>
+    </div>
   )
 }
 

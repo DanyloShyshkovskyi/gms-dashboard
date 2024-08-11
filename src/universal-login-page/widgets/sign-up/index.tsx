@@ -19,7 +19,7 @@ const SignUp = ({ email, setEmail }: Props): JSX.Element => {
   const { signUp, isBusy, setMode } = useWebAuth()
 
   return (
-    <>
+    <div>
       <div>{'Sign Up'}</div>
       <div color='text.secondary'>{'Sign up with'}</div>
       <SocialSignIn />
@@ -73,7 +73,7 @@ const SignUp = ({ email, setEmail }: Props): JSX.Element => {
           <div>{'Sign In'}</div>
         </Button>
       </div>
-    </>
+    </div>
   )
 }
 

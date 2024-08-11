@@ -25,7 +25,7 @@ export default ({ mode }) => {
         },
         input: {
           main: resolve(__dirname, 'index.html'),
-          nested: resolve(__dirname, 'login.html'),
+          login: resolve(__dirname, 'login.html'),
         },
         output: {
           entryFileNames: `assets/[name].js`,

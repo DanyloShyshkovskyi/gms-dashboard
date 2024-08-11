@@ -1,18 +1,39 @@
 import { useAutoAnimate } from '@formkit/auto-animate/react'
-import { Suspense, lazy } from 'react'
 
+import { useDelayChange } from 'shared/hooks'
+import { Skeleton } from 'shared/ui/skeleton'
+
+import { SVGLoginBg } from './components/svg/login-bg'
+import { SVGLogo } from './components/svg/logo'
 import { IMode, useWebAuth } from './provider'
-import LoginBg from '/media/login-bg-secondary.svg'
-import Logo from '/media/logo.svg'
+import PasswordRecovery from './widgets/reset-password'
+import SignIn from './widgets/sign-in'
+import SignUp from './widgets/sign-up'
 
-const Switcher = ({ mode }: { mode: IMode }): JSX.Element => {
-  /* @vite-ignore */
-  const AuthComponent = lazy(() => import(`./widgets/${mode}/index.tsx`))
-  return (
-    <Suspense fallback={<div className='h-96'></div>}>
-      <AuthComponent />
-    </Suspense>
-  )
+const AuthComponents: Record<IMode, React.ComponentType> = {
+  'sign-up': SignUp,
+  'sign-in': SignIn,
+  'reset-password': PasswordRecovery,
+}
+
+const Switcher = ({ mode }: { mode: IMode }) => {
+  const delayedMode = useDelayChange(mode)
+
+  if (!delayedMode) {
+    return null
+  }
+
+  const AuthComponent = AuthComponents[delayedMode]
+
+  if (!AuthComponent) {
+    return null
+  }
+
+  if (delayedMode !== 'sign-in') {
+    return <Skeleton className='min-h-130 max-w-lg' />
+  }
+
+  return <AuthComponent />
 }
 
 export const Content = (): JSX.Element => {
@@ -23,13 +44,9 @@ export const Content = (): JSX.Element => {
     <div className='bg-blue-50'>
       <div className='container flex min-h-screen flex-col justify-center py-10'>
         <div>
-          <img
-            alt='login_bg'
-            src={LoginBg}
-            className='absolute right-0 top-0 z-0 h-full'
-          />
-          <img alt='login_bg' src={Logo} className='h-16' />
-          <div ref={parent} className='mt-20'>
+          <SVGLoginBg />
+          <SVGLogo />
+          <div ref={parent} className='min-h-130 relative mt-20 p-1'>
             <Switcher mode={mode} />
           </div>
         </div>

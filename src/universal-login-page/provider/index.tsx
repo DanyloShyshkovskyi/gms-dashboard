@@ -51,6 +51,13 @@ const getInitialMode = (): IMode => {
     window.location.search
   )
 
+  // If search 'mode' is present, use it
+  const mode = new URL(window.location.href).searchParams.get('mode') as IMode
+
+  if (mode) {
+    return mode
+  }
+
   return hasRegisterLoginAction ? 'sign-up' : 'sign-in'
 }
 
@@ -86,6 +93,22 @@ const WebAuthProvider = ({ children }: { children: JSX.Element }) => {
       }
     }
   }, [webAuth])
+
+  useEffect(() => {
+    const url = new URL(window.location.href)
+    url.searchParams.set('mode', mode)
+    window.history.pushState({}, '', url.toString())
+
+    window.addEventListener('popstate', () => {
+      setMode(getInitialMode())
+    })
+
+    return () => {
+      window.removeEventListener('popstate', () => {
+        setMode(getInitialMode())
+      })
+    }
+  }, [mode])
 
   const login: Login = ({ username, password }) => {
     setBusy(true)

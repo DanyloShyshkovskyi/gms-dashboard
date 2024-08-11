@@ -109,6 +109,18 @@ export default {
       ring: 'hsl(var(--ring) / <alpha-value>)',
     },
     extend: {
+      height: {
+        100: '26rem',
+        120: '30rem',
+        130: '32rem',
+        140: '34rem',
+      },
+      minHeight: {
+        100: '26rem',
+        120: '30rem',
+        130: '32rem',
+        140: '34rem',
+      },
       boxShadow: {
         sidebar: `
         -6px 21px 49px 0px #6B6B6B1A,
