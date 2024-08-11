@@ -27,6 +27,11 @@ export default ({ mode }) => {
           main: resolve(__dirname, 'index.html'),
           nested: resolve(__dirname, 'login.html'),
         },
+        output: {
+          entryFileNames: `assets/[name].js`,
+          chunkFileNames: `assets/[name].js`,
+          assetFileNames: `assets/[name].[ext]`,
+        },
       },
     },
     server: {

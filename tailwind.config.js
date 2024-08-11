@@ -116,6 +116,12 @@ export default {
         -51px 192px 119px 0px #6B6B6B0D,
         -91px 341px 141px 0px #6B6B6B03,
         -143px 533px 154px 0px #6B6B6B00;`,
+        1: `
+        0px 13px 29px 0px #9494941A,
+        0px 53px 53px 0px #94949417,
+        0px 119px 71px 0px #9494940D,
+        0px 212px 85px 0px #94949403,
+        0px 331px 93px 0px #94949400;`,
       },
       transitionProperty: {
         width: 'width',

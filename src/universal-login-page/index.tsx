@@ -1,5 +1,5 @@
-import { Content } from './Content'
-import { WebAuthProvider } from './WebAuthProvider'
+import { WebAuthProvider } from './provider'
+import { Content } from './switcher'
 
 const UniversalLoginPage = (): JSX.Element => (
   <WebAuthProvider>

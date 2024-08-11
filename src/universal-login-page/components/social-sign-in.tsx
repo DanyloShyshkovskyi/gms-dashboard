@@ -1,12 +1,12 @@
-import { Button } from 'shared/ui/button'
+import { useWebAuth } from 'universal-login-page/provider'
 
-import { useWebAuth } from './WebAuthProvider'
+import { Button } from 'shared/ui/button'
 
 export const SocialSignIn = (): JSX.Element => {
   const { loginWithSocial, isBusy } = useWebAuth()
 
   return (
-    <div display='flex' mt={3}>
+    <div>
       <Button
         disabled={isBusy}
         id='login-social-google-signup'
@@ -15,7 +15,6 @@ export const SocialSignIn = (): JSX.Element => {
         <svg
           fill='none'
           height='24px'
-          mr={1}
           viewBox='0 0 25 24'
           width='25px'
           xmlns='http://www.w3.org/2000/svg'

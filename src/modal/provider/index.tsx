@@ -30,7 +30,7 @@ const RenderModalContent = ({
   const ModalComponent = lazy(
     () =>
       import(
-        `../components/${isAlert ? 'alert-dialogs' : 'dialogs'}/${type}/index`
+        `../components/${isAlert ? 'alert-dialogs' : 'dialogs'}/${type}/index.tsx`
       )
   )
   return (

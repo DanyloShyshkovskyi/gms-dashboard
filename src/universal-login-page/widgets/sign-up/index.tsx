@@ -1,18 +1,17 @@
 import { Dispatch, useState } from 'react'
 
+import { SocialSignIn, WebAuthAlert } from 'universal-login-page/components'
+import { useWebAuth } from 'universal-login-page/provider'
+
 import { Button } from 'shared/ui/button'
 import { Input } from 'shared/ui/input'
-
-import { SocialSignIn } from './SocialSignIn'
-import { WebAuthAlert } from './WebAuthAlert'
-import { useWebAuth } from './WebAuthProvider'
 
 interface Props {
   email: string
   setEmail: Dispatch<string>
 }
 
-export const SignUp = ({ email, setEmail }: Props): JSX.Element => {
+const SignUp = ({ email, setEmail }: Props): JSX.Element => {
   const [password, setPassword] = useState('')
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -21,10 +20,8 @@ export const SignUp = ({ email, setEmail }: Props): JSX.Element => {
 
   return (
     <>
-      <div variant='h5'>{'Sign Up'}</div>
-      <div color='text.secondary' variant='body2'>
-        {'Sign up with'}
-      </div>
+      <div>{'Sign Up'}</div>
+      <div color='text.secondary'>{'Sign up with'}</div>
       <SocialSignIn />
       <WebAuthAlert sx={{ mt: 3 }} />
       <Input
@@ -41,7 +38,7 @@ export const SignUp = ({ email, setEmail }: Props): JSX.Element => {
         type='password'
         value={password}
       />
-      <div display='flex' mt={2}>
+      <div>
         <Input
           id='first-name'
           onChange={(e) => setFirstName(e.target.value)}
@@ -70,14 +67,14 @@ export const SignUp = ({ email, setEmail }: Props): JSX.Element => {
       >
         {'Continue'}
       </Button>
-      <div alignItems='center' display='flex' justifyContent='center' mt={3}>
-        <div color='text.secondary' variant='body1'>
-          {'Already have an account?'}&nbsp;
-        </div>
-        <Button onClick={() => setMode('signIn')}>
-          <div variant='body1'>{'Sign In'}</div>
+      <div>
+        <div color='text.secondary'>{'Already have an account?'}&nbsp;</div>
+        <Button onClick={() => setMode('sign-in')}>
+          <div>{'Sign In'}</div>
         </Button>
       </div>
     </>
   )
 }
+
+export default SignUp

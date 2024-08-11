@@ -25,7 +25,8 @@
     "react/prop-types": "off",
     "react/display-name": "off",
     "no-console": "warn",
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    "react/no-children-prop": "off"
   },
   "settings": {
     "react": {

@@ -23,12 +23,7 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: Set environment variables
-        run: |
-          echo "VITE_APP_API_URL=/gms-dashboard/data" >> .env
-          echo "VITE_APP_BASE_URL=/gms-dashboard" >> .env
-          echo "VITE_APP_AUTH0_DOMAIN=dev-1m2xign6b5ra2jjt.us.auth0.com" >> .env
-          echo "VITE_APP_AUTH0_CLIENT_ID=Yfed90ENZtqiXHP3LRxRfJIB4gJzgD35" >> .env
-          echo "VITE_APP_WITHOUT_LOGIN=true" >> .env
+        run: echo "VITE_APP_BASE_URL=/lensledger" >> .env
 
       - name: Build project
         run: npm run build
