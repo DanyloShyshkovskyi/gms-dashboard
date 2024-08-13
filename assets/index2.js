@@ -1,1 +1,1 @@
-import"./main2.js";const d=({user_roles:e,org_id:o,user_id:r})=>{};export{d as default};
+import{j as e,K as r,O as i,Q as t,T as o,V as n,W as c,Y as x}from"./main2.js";const d=({title:l,description:s,onConfirm:a})=>e.jsxs(r,{className:"sm:max-w-[425px]",children:[e.jsxs(i,{children:[e.jsx(t,{children:l}),e.jsx(o,{children:s})]}),e.jsxs(n,{children:[e.jsx(c,{children:"Cancel"}),e.jsx(x,{onClick:a,children:"Continue"})]})]});export{d as default};
