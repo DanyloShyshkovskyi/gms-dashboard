@@ -24,6 +24,7 @@ type SignUp = (attrs: {
   password: string
   givenName: string
   familyName: string
+  user_metadata: any
 }) => void
 type ChangePassword = ({ email }) => void
 type Alert = {
@@ -68,6 +69,8 @@ const WebAuthProvider = ({ children }: { children: JSX.Element }) => {
   const [alert, setAlert] = useState<Alert>()
   const [isBusy, setBusy] = useState(false)
   const [mode, setModeDispatch] = useState<IMode>(getInitialMode())
+
+  console.log({ alert, isBusy })
 
   const handleError = (err: Auth0Error | ErrorMessageKey): void => {
     if (isAnomalyError(err) && redirectToReferrer()) {
@@ -148,7 +151,13 @@ const WebAuthProvider = ({ children }: { children: JSX.Element }) => {
     })
   }
 
-  const signUp: SignUp = ({ email, password, givenName, familyName }) => {
+  const signUp: SignUp = ({
+    email,
+    password,
+    givenName,
+    familyName,
+    user_metadata,
+  }) => {
     setBusy(true)
 
     if (!email) {
@@ -176,6 +185,7 @@ const WebAuthProvider = ({ children }: { children: JSX.Element }) => {
         family_name: familyName,
         user_metadata: {
           ...(referral && { referral }),
+          ...user_metadata,
         },
         /* eslint-enable camelcase */
       } as DbSignUpOptions,
