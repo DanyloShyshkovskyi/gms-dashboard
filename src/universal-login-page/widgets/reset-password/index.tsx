@@ -1,49 +1,61 @@
-import { Dispatch } from 'react'
+import { ArrowLeft } from 'lucide-react'
+import { FormProvider, useForm } from 'react-hook-form'
 
-import { WebAuthAlert } from 'universal-login-page/components'
+import { InputController } from 'universal-login-page/components'
 import { useWebAuth } from 'universal-login-page/provider'
 
 import { Button } from 'shared/ui/button'
-import { Input } from 'shared/ui/input'
 
-interface Props {
+interface Inputs {
   email: string
-  setEmail: Dispatch<string>
 }
 
-const PasswordRecovery = ({ email, setEmail }: Props): JSX.Element => {
+const PasswordRecovery = () => {
   const { setMode, changePassword, isBusy } = useWebAuth()
 
+  const methods = useForm<Inputs>()
+
+  const onSubmit = (data: any) => {
+    changePassword(data)
+  }
+
   return (
-    <div>
-      <div>{'Password Recovery'}</div>
-      <div>
-        {
-          'Enter the email address you signed up with below. An email will be sent containing a link to reset your password.'
-        }
-      </div>
-      <WebAuthAlert />
-      <Input
-        id='email'
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder='Email'
-        type='email'
-        value={email}
-      />
-      <Button
-        color='primary'
-        disabled={isBusy}
-        id='btn-reset-password'
-        onClick={() => changePassword({ email })}
-      >
-        {'Send instructions'}
-      </Button>
-      <div>
-        <div>{'Ready to Sign In?'}&nbsp;</div>
-        <Button onClick={() => setMode('sign-in')}>
-          <div>{'Sign In'}</div>
-        </Button>
-      </div>
+    <div className='max-w-xl '>
+      <h1 className='text-7xl font-bold'>Forgot your password?</h1>
+      <span className='my-10 block h-1 w-9 rounded-full bg-blue-700'></span>
+      <FormProvider {...methods}>
+        <form
+          onSubmit={methods.handleSubmit(onSubmit)}
+          className='flex flex-col gap-3'
+        >
+          <InputController
+            label='Email'
+            placeholder='Provide your email address'
+            name='email'
+            id='email'
+            type='email'
+            rules={{ required: true }}
+          />
+          <Button
+            type='submit'
+            disabled={isBusy}
+            className='mt-3 block w-full rounded-full bg-blue-950 '
+          >
+            Log In
+          </Button>
+          <div>
+            <Button
+              type='button'
+              variant='link'
+              onClick={() => setMode('sign-in')}
+              className='mt-5 inline-flex space-x-2'
+            >
+              <ArrowLeft size={24} className='text-blue-700' />
+              <span className='text-gray-500'>Back</span>
+            </Button>
+          </div>
+        </form>
+      </FormProvider>
     </div>
   )
 }

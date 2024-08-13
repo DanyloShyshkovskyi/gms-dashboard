@@ -7,6 +7,7 @@ import {
 } from 'react'
 
 import type { Auth0Error, DbSignUpOptions, WebAuth } from 'auth0-js'
+import { useModal } from 'modal'
 import { createAuthClient } from 'universal-login-page/utils'
 import {
   ErrorMessageKey,
@@ -69,6 +70,7 @@ const WebAuthProvider = ({ children }: { children: JSX.Element }) => {
   const [alert, setAlert] = useState<Alert>()
   const [isBusy, setBusy] = useState(false)
   const [mode, setModeDispatch] = useState<IMode>(getInitialMode())
+  const { openAlertDialog } = useModal()
 
   console.log({ alert, isBusy })
 
@@ -172,10 +174,6 @@ const WebAuthProvider = ({ children }: { children: JSX.Element }) => {
       return handleError('first_name')
     }
 
-    if (!familyName) {
-      return handleError('last_name')
-    }
-
     return webAuth?.signup(
       {
         connection: 'Username-Password-Authentication',
@@ -218,6 +216,9 @@ const WebAuthProvider = ({ children }: { children: JSX.Element }) => {
         if (err) {
           handleError(err)
         } else {
+          openAlertDialog('close_only', {
+            title: 'Please check your inbox for confirmation email',
+          })
           setAlert({
             severity: 'success',
             message: 'Email sent!',

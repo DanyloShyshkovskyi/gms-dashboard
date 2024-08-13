@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 
 import {
@@ -24,9 +23,9 @@ interface Inputs {
 const SignUp = () => {
   const { signUp, isBusy, setMode } = useWebAuth()
   const methods = useForm<Inputs, string>({ mode: 'onChange' })
-  const password = useRef<string | undefined>()
 
   const onSubmit = (form_data: Inputs) => {
+    console.log('form_data', form_data)
     signUp(form_data)
   }
 

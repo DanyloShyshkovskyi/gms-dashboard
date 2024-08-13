@@ -18,7 +18,6 @@ export const PasswordPolicy = () => {
     control,
     formState: { errors },
   } = useFormContext()
-  console.log('errors', errors)
   const password = useWatch({
     control,
     name: 'password',
@@ -37,12 +36,8 @@ export const PasswordPolicy = () => {
           type='password'
           rules={{
             required: true,
-            validate: (value) => {
-              console.log('Validating password:', value)
-              const policy = passwordPolicy(value)
-              const isValid = Object.values(policy).every(Boolean)
-              return isValid
-            },
+            validate: (value) =>
+              Object.values(passwordPolicy(value)).every(Boolean),
           }}
         />
         <InputController
@@ -101,7 +96,7 @@ const PolicyItem = ({
       </span>
       <span
         className={cn(
-          'text-xs font-medium',
+          'text-xs font-medium transition-colors',
           isValid ? 'text-green-600' : 'text-red-600'
         )}
       >

@@ -42,7 +42,7 @@ export const InputController = forwardRef<HTMLInputElement, FormInputProps>(
     })
     const [showPassword, setShowPassword] = useState<boolean>(false)
     const isPasswordType = props.type === 'password'
-    console.log('errors', error)
+
     return (
       <div className={cn('space-y-0.5')}>
         <Label
@@ -69,17 +69,23 @@ export const InputController = forwardRef<HTMLInputElement, FormInputProps>(
             )}
           />
           {isPasswordType && (
-            <div
-              onClick={() => setShowPassword((prev) => !prev)}
+            <button
+              type='button'
+              onClick={() => {
+                setShowPassword((prev) => !prev)
+                document
+                  .querySelector<HTMLInputElement>(`input[name="${name}"]`)
+                  ?.focus()
+              }}
               className={cn(
                 `absolute right-3 top-0 flex h-full cursor-pointer items-center font-bold text-gray-300`,
                 { [errorColor]: invalid }
               )}
             >
               {showPassword ? <EyeOffIcon size={20} /> : <EyeIcon size={20} />}
-            </div>
+            </button>
           )}
-          <div className={cn('absolute right-0 mt-0.5 text-xs', errorColor)}>
+          <div className={cn('absolute right-0 mt-1 text-xs', errorColor)}>
             {error && error?.message}
           </div>
         </div>
