@@ -155,7 +155,7 @@ const WebAuthProvider = ({ children }: { children: JSX.Element }) => {
     email,
     password,
     givenName,
-    familyName,
+    familyName = ' ',
     user_metadata,
   }) => {
     setBusy(true)
