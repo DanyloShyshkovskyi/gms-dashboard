@@ -1,78 +1,107 @@
-import { Dispatch, useState } from 'react'
+import { useRef } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
 
-import { SocialSignIn, WebAuthAlert } from 'universal-login-page/components'
+import {
+  InputController,
+  PasswordPolicy,
+} from 'universal-login-page/components'
 import { useWebAuth } from 'universal-login-page/provider'
 
 import { Button } from 'shared/ui/button'
-import { Input } from 'shared/ui/input'
 
-interface Props {
+interface Inputs {
   email: string
-  setEmail: Dispatch<string>
+  password: string
+  givenName: string
+  familyName: string
+  user_metadata: {
+    companyName: string
+    contactNumber?: string
+    numberOfEmployees?: number
+  }
 }
 
-const SignUp = ({ email, setEmail }: Props): JSX.Element => {
-  const [password, setPassword] = useState('')
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-
+const SignUp = () => {
   const { signUp, isBusy, setMode } = useWebAuth()
+  const methods = useForm<Inputs, string>({ mode: 'onChange' })
+  const password = useRef<string | undefined>()
+
+  const onSubmit = (form_data: Inputs) => {
+    signUp(form_data)
+  }
 
   return (
     <div>
-      <div>{'Sign Up'}</div>
-      <div color='text.secondary'>{'Sign up with'}</div>
-      <SocialSignIn />
-      <WebAuthAlert sx={{ mt: 3 }} />
-      <Input
-        id='email'
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder='Email'
-        type='email'
-        value={email}
-      />
-      <Input
-        id='password'
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder='Password'
-        type='password'
-        value={password}
-      />
-      <div>
-        <Input
-          id='first-name'
-          onChange={(e) => setFirstName(e.target.value)}
-          placeholder='First Name'
-          value={firstName}
-        />
-        <Input
-          id='last-name'
-          onChange={(e) => setLastName(e.target.value)}
-          placeholder='Last Name'
-          value={lastName}
-        />
-      </div>
-      <Button
-        color='primary'
-        disabled={isBusy}
-        id='btn-sign-up-submit'
-        onClick={() =>
-          signUp({
-            email,
-            password,
-            givenName: firstName,
-            familyName: lastName,
-          })
-        }
-      >
-        {'Continue'}
-      </Button>
-      <div>
-        <div color='text.secondary'>{'Already have an account?'}&nbsp;</div>
-        <Button onClick={() => setMode('sign-in')}>
-          <div>{'Sign In'}</div>
-        </Button>
-      </div>
+      <h1 className='text-7xl font-bold'>Sign Up</h1>
+      <span className='my-10 block h-1 w-9 rounded-full bg-blue-700'></span>
+      <FormProvider {...methods}>
+        <form
+          onSubmit={methods.handleSubmit(onSubmit)}
+          className='flex max-w-xl flex-col gap-3'
+        >
+          <InputController
+            label='Name of Person'
+            placeholder='April Johnson'
+            name='givenName'
+            id='givenName'
+            type='text'
+            rules={{ required: true }}
+          />
+          <InputController
+            label='Name of Company'
+            placeholder='Company Name'
+            name='user_metadata.companyName'
+            id='companyName'
+            type='text'
+          />
+          <div className='grid gap-3 lg:grid-cols-2'>
+            <InputController
+              label='Email Address'
+              placeholder='your.email@gmail.com'
+              name='email'
+              id='email'
+              type='email'
+              rules={{ required: true }}
+            />
+            <InputController
+              label={'Contact Number'}
+              placeholder={'+1 234 567 890'}
+              name={'user_metadata.contactNumber'}
+              id={'contactNumber'}
+              type={'tel'}
+            />
+          </div>
+          <InputController
+            label='Number of Employees'
+            placeholder='1-10'
+            name='user_metadata.numberOfEmployees'
+            id='numberOfEmployees'
+            type='number'
+          />
+          <PasswordPolicy />
+          <Button
+            type='submit'
+            disabled={isBusy}
+            className='mt-5 block w-full rounded-lg bg-blue-700 '
+          >
+            Sign Up
+          </Button>
+          <span className='block text-sm text-gray-500'>
+            Or sign into your company account (SSO)
+          </span>
+          <div className='mt-5 flex items-center justify-center gap-1 text-sm'>
+            <div className=''>I have an account already</div>
+            <Button
+              type='button'
+              className='h-full p-0 font-semibold text-blue-700'
+              variant={'link'}
+              onClick={() => setMode('sign-in')}
+            >
+              <div>{'log in'}</div>
+            </Button>
+          </div>
+        </form>
+      </FormProvider>
     </div>
   )
 }

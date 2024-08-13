@@ -2,7 +2,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { Separator } from '@radix-ui/react-separator'
 import { Bell, Search } from 'lucide-react'
 
-import { USER_PLACEHOLDER_IMAGE } from 'shared/config'
+import { REDIRECT_URI, USER_PLACEHOLDER_IMAGE } from 'shared/config'
 import { Avatar, AvatarFallback, AvatarImage } from 'shared/ui/avatar'
 import {
   DropdownMenu,
@@ -67,7 +67,7 @@ const Header = () => {
                     onClick={() =>
                       isAuthenticated
                         ? logout({
-                            logoutParams: { returnTo: window.location.origin },
+                            logoutParams: { returnTo: REDIRECT_URI },
                           })
                         : loginWithRedirect()
                     }

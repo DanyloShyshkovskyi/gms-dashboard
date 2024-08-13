@@ -1,6 +1,6 @@
-import { useForm } from 'react-hook-form'
+import { FormProvider, useForm } from 'react-hook-form'
 
-import { FormInput, WebAuthAlert } from 'universal-login-page/components'
+import { InputController, WebAuthAlert } from 'universal-login-page/components'
 import { useWebAuth } from 'universal-login-page/provider'
 
 import { Button } from 'shared/ui/button'
@@ -13,7 +13,7 @@ interface Inputs {
 
 const SignIn = () => {
   const { login, isBusy, setMode } = useWebAuth()
-  const { register, handleSubmit } = useForm<Inputs>()
+  const modifies = useForm<Inputs>()
 
   const onSubmit = ({ email, password }: Inputs) => {
     login({
@@ -27,44 +27,49 @@ const SignIn = () => {
       <div>
         <h1 className='text-7xl font-bold'>Welcome back!</h1>
         <span className='my-10 block h-1 w-9 rounded-full bg-blue-700'></span>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className='flex max-w-xl flex-col gap-3'
-        >
-          <FormInput
-            label='Email'
-            placeholder='apriljohnson@gmail.com'
-            {...register('email', { required: true })}
-          />
-          <FormInput
-            label='Password'
-            id='password'
-            placeholder='Type your password...'
-            type='password'
-            {...register('password', { required: true })}
-          />
-          <div className='text-right'>
-            <Button
-              type={'button'}
-              variant={'link'}
-              onClick={() => setMode('reset-password')}
-              className='h-full p-0 text-blue-700'
-            >
-              Forgot your password?
-            </Button>
-          </div>
-
-          <Button
-            type='submit'
-            disabled={isBusy}
-            className='mt-5 block w-full rounded-full bg-blue-950 '
+        <FormProvider {...modifies}>
+          <form
+            onSubmit={modifies.handleSubmit(onSubmit)}
+            className='flex max-w-xl flex-col gap-3'
           >
-            Log In
-          </Button>
-          <span className='mt-3 block text-center text-gray-500'>
-            Or sign into your company account (SSO)
-          </span>
-        </form>
+            <InputController
+              label='Email'
+              name='email'
+              id='email'
+              type='email'
+              rules={{ required: true }}
+            />
+            <InputController
+              label='Password'
+              name='password'
+              id='password'
+              placeholder='Type your password...'
+              type='password'
+              rules={{ required: true }}
+            />
+            <div className='text-right'>
+              <Button
+                type={'button'}
+                variant={'link'}
+                onClick={() => setMode('reset-password')}
+                className='h-full p-0 text-blue-700'
+              >
+                Forgot your password?
+              </Button>
+            </div>
+
+            <Button
+              type='submit'
+              disabled={isBusy}
+              className='mt-5 block w-full rounded-full bg-blue-950 '
+            >
+              Log In
+            </Button>
+            <span className='mt-3 block text-center text-gray-500'>
+              Or sign into your company account (SSO)
+            </span>
+          </form>
+        </FormProvider>
         <WebAuthAlert sx={{ mt: 3 }} />
       </div>
 

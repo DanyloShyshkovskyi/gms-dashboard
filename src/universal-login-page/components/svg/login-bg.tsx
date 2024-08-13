@@ -3,7 +3,7 @@ export const SVGLoginBg = () => (
     viewBox='0 0 674 1076'
     fill='none'
     xmlns='http://www.w3.org/2000/svg'
-    className={'absolute right-0 top-0 z-0 h-full'}
+    className={'absolute right-0 top-0 z-0 h-full w-auto object-cover'}
   >
     <path
       d='M42.3832 642.797L42.7734 643.188C98.1645 698.608 187.971 698.608 243.362 643.188L243.752 642.797C299.144 587.377 299.144 497.523 243.752 442.103L243.362 441.712C187.971 386.292 98.1645 386.292 42.7734 441.712L42.3831 442.103C-13.0079 497.523 -13.0079 587.377 42.3832 642.797Z'

@@ -13,7 +13,7 @@ export const BASE_URL = getEnvVar('VITE_APP_BASE_URL')
 
 export const AUTH0_DOMAIN = getEnvVar('VITE_APP_AUTH0_DOMAIN')
 
-export const REDIRECT_URI = `${window.location.origin}${BASE_URL}/callback`
+export const REDIRECT_URI = `${window.location.origin}${BASE_URL}`
 
 export const AUTH0_CLIENT_ID = getEnvVar('VITE_APP_AUTH0_CLIENT_ID')
 

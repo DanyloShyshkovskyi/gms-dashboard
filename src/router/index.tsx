@@ -1,5 +1,5 @@
-import { Navigate } from 'react-router'
 import { createBrowserRouter } from 'react-router-dom'
+import { BreadcrumbsRoute } from 'use-react-router-breadcrumbs'
 
 import Layout from 'layout/index'
 import { Login } from 'pages/Login'
@@ -7,12 +7,17 @@ import NotFound from 'pages/NotFound'
 
 import { BASE_URL } from 'shared/config'
 
-export const routes = [
+export const routes: BreadcrumbsRoute[] = [
   {
     path: '/',
     element: <Layout />,
     breadcrumb: null,
     children: [
+      {
+        path: '',
+        element: <div>Home</div>,
+        breadcrumb: null,
+      },
       {
         path: 'dashboard',
         lazy: () => import('pages/Dashboard'),
@@ -30,10 +35,6 @@ export const routes = [
       {
         path: 'projects',
         lazy: () => import('pages/Projects'),
-      },
-      {
-        path: 'callback',
-        element: <Navigate to={'/dashboard'} />,
       },
       {
         path: 'login',
