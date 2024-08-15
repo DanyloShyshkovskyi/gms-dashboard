@@ -1,4 +1,4 @@
-import{c as xo,r as a,j as g,b as Z,R as U,m as ot,K as Lt,O as wo,P as vo,Q as yo,T as Co,V as bo,W as Ro,d as ce}from"./main2.js";import{C as Mo}from"./chevron-right.js";import{C as So}from"./check.js";/**
+import{c as xo,r as a,j as g,b as Z,R as U,o as ot,K as Lt,O as wo,P as vo,Q as yo,T as Co,V as bo,W as Ro,d as ce}from"./main2.js";import{C as Mo}from"./chevron-right.js";import{C as So}from"./check.js";/**
  * @license lucide-react v0.378.0 - ISC
  *
  * This source code is licensed under the ISC license.
