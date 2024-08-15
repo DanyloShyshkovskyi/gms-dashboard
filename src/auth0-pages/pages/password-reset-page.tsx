@@ -6,7 +6,7 @@ import { Wrapper } from 'auth0-pages/components/wrapper'
 import { useModal } from 'modal'
 
 import { apiInstance } from 'shared/api'
-import { ROOT } from 'shared/config'
+import { REDIRECT_URI, ROOT } from 'shared/config'
 import { Button } from 'shared/ui/button'
 
 interface Inputs {
@@ -29,7 +29,13 @@ export const PasswordResetPage = () => {
     mutationFn: (data: DataPost) =>
       apiInstance.post(`${window.location.origin}/lo/reset`, data),
     onSuccess: (data) => {
-      console.log('success', data)
+      openAlertDialog('interval_timer', {
+        title:
+          'Your password has been reset, you will be redirected to the login page in 5 seconds',
+        onTimeEnd: () => {
+          window.location.replace(REDIRECT_URI)
+        },
+      })
     },
     onError: (error) => {
       console.log('error', error)
@@ -42,14 +48,6 @@ export const PasswordResetPage = () => {
       email: ROOT.getAttribute('data-email') || '',
       newPassword: form_data.password,
       confirmNewPassword: form_data.password_repeat,
-    })
-
-    openAlertDialog('interval_timer', {
-      title:
-        'Your password has been reset, you will be redirected to the login page in 5 seconds',
-      onTimeEnd: () => {
-        console.log('onTimeEnd')
-      },
     })
   }
   return (
