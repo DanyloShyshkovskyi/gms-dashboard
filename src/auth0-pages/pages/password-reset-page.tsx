@@ -15,7 +15,7 @@ interface Inputs {
 }
 
 interface DataPost {
-  _crsf: string
+  _csrf: string
   ticket: string
   email: string
   newPassword: string
@@ -37,7 +37,7 @@ export const PasswordResetPage = () => {
   })
   const onSubmit = (form_data: Inputs) => {
     mutate({
-      _crsf: ROOT.getAttribute('data-crsf') || '',
+      _csrf: ROOT.getAttribute('data-csrf') || '',
       ticket: ROOT.getAttribute('data-ticket') || '',
       email: ROOT.getAttribute('data-email') || '',
       newPassword: form_data.password,
