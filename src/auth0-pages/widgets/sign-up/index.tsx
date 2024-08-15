@@ -1,10 +1,7 @@
 import { FormProvider, useForm } from 'react-hook-form'
 
-import {
-  InputController,
-  PasswordPolicy,
-} from 'universal-login-page/components'
-import { useWebAuth } from 'universal-login-page/provider'
+import { InputController, PasswordPolicy } from 'auth0-pages/components'
+import { useWebAuth } from 'auth0-pages/provider'
 
 import { Button } from 'shared/ui/button'
 
@@ -77,7 +74,7 @@ const SignUp = () => {
             id='numberOfEmployees'
             type='number'
           />
-          <PasswordPolicy />
+          <PasswordPolicy inline />
           <Button
             type='submit'
             disabled={isBusy}

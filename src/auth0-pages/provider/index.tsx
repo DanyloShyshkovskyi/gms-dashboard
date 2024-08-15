@@ -7,14 +7,14 @@ import {
 } from 'react'
 
 import type { Auth0Error, DbSignUpOptions, WebAuth } from 'auth0-js'
-import { useModal } from 'modal'
-import { createAuthClient } from 'universal-login-page/utils'
+import { createAuthClient } from 'auth0-pages/utils'
 import {
   ErrorMessageKey,
   getErrorMessage,
   isAnomalyError,
   redirectToReferrer,
-} from 'universal-login-page/utils/error'
+} from 'auth0-pages/utils/error'
+import { useModal } from 'modal'
 
 export type IMode = 'sign-in' | 'sign-up' | 'reset-password'
 type Provider = 'google-oauth2' | 'github'

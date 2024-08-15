@@ -1,4 +1,4 @@
-import { useWebAuth } from 'universal-login-page/provider'
+import { useWebAuth } from 'auth0-pages/provider'
 
 export const WebAuthAlert = (props: any): JSX.Element => {
   const { alert } = useWebAuth()

@@ -1,8 +1,8 @@
 import { ArrowLeft } from 'lucide-react'
 import { FormProvider, useForm } from 'react-hook-form'
 
-import { InputController } from 'universal-login-page/components'
-import { useWebAuth } from 'universal-login-page/provider'
+import { InputController } from 'auth0-pages/components'
+import { useWebAuth } from 'auth0-pages/provider'
 
 import { Button } from 'shared/ui/button'
 

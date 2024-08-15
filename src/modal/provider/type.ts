@@ -1,5 +1,6 @@
 import { ICloseAlertDialog } from 'modal/components/alert-dialogs/close_only/type'
 import { IDefaultAlertDialog } from 'modal/components/alert-dialogs/default/type'
+import { IIntervalTimerAlertDialog } from 'modal/components/alert-dialogs/interval_timer/type'
 import { IUserRoleAdd } from 'modal/components/dialogs/user_roles_add/type'
 
 export type IDialogMap = {
@@ -9,6 +10,7 @@ export type IDialogMap = {
 export type IAlertDialogMap = {
   default: IDefaultAlertDialog
   close_only: ICloseAlertDialog
+  interval_timer: IIntervalTimerAlertDialog
 }
 
 // Define a type for modal data, encompassing both dialog and alert types

@@ -13,7 +13,7 @@ const passwordPolicy = (password: string) => ({
   hasSpecialChar: /[!@#$%^&*(),.?":{}|<>]/.test(password),
 })
 
-export const PasswordPolicy = () => {
+export const PasswordPolicy = ({ inline }: { inline?: boolean }) => {
   const {
     control,
     formState: { errors },
@@ -28,9 +28,9 @@ export const PasswordPolicy = () => {
 
   return (
     <div ref={parent} className='space-y-5'>
-      <div className='grid gap-3 lg:grid-cols-2'>
+      <div className={cn('grid gap-3', { 'lg:grid-cols-2': inline })}>
         <InputController
-          label='Password'
+          label={inline ? 'Password' : 'New Password'}
           name='password'
           id='password'
           type='password'
@@ -41,7 +41,7 @@ export const PasswordPolicy = () => {
           }}
         />
         <InputController
-          label='Repeat Password'
+          label={inline ? 'Repeat Password' : 'Repeat New Password'}
           name='password_repeat'
           type='password'
           rules={{
