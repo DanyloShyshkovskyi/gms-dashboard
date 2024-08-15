@@ -26,7 +26,8 @@ export const PasswordResetPage = () => {
   const methods = useForm<Inputs>({ mode: 'onChange' })
   const { openAlertDialog } = useModal()
   const { mutate } = useMutation({
-    mutationFn: (data: DataPost) => apiInstance.post('/lo/reset', data),
+    mutationFn: (data: DataPost) =>
+      apiInstance.post(`${window.location.origin}/lo/reset`, data),
     onSuccess: (data) => {
       console.log('success', data)
     },
