@@ -219,10 +219,10 @@ const WebAuthProvider = ({ children }: { children: JSX.Element }) => {
           openAlertDialog('close_only', {
             title: 'Please check your inbox for confirmation email',
           })
-          setAlert({
-            severity: 'success',
-            message: 'Email sent!',
-          })
+          // setAlert({
+          //   severity: 'success',
+          //   message: 'Email sent!',
+          // })
           setBusy(false)
         }
       }
@@ -233,6 +233,7 @@ const WebAuthProvider = ({ children }: { children: JSX.Element }) => {
     setBusy(false)
     setAlert(undefined)
     setModeDispatch(newMode)
+    window.scrollTo(0, 0)
   }
 
   // eslint-disable-next-line react/jsx-no-constructed-context-values

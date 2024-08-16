@@ -1,4 +1,6 @@
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { useMutation } from '@tanstack/react-query'
+import { AlertCircle } from 'lucide-react'
 import { FormProvider, useForm } from 'react-hook-form'
 
 import { PasswordPolicy } from 'auth0-pages/components'
@@ -6,8 +8,9 @@ import { Wrapper } from 'auth0-pages/components/wrapper'
 import { useModal } from 'modal'
 
 import { apiInstance } from 'shared/api'
-import { REDIRECT_URI, ROOT } from 'shared/config'
-import { Button } from 'shared/ui/button'
+import { ROOT } from 'shared/config'
+import { ButtonLoading } from 'shared/ui/button'
+import { errorTransformer } from 'shared/utils'
 
 interface Inputs {
   password: string
@@ -25,7 +28,8 @@ interface DataPost {
 export const PasswordResetPage = () => {
   const methods = useForm<Inputs>({ mode: 'onChange' })
   const { openAlertDialog } = useModal()
-  const { mutate } = useMutation({
+  const [parent] = useAutoAnimate()
+  const { mutate, isPending, error } = useMutation({
     mutationFn: (data: DataPost) =>
       apiInstance.post(`${window.location.origin}/lo/reset`, data),
     onSuccess: (data) => {
@@ -33,7 +37,10 @@ export const PasswordResetPage = () => {
         title:
           'Your password has been reset, you will be redirected to the login page in 5 seconds',
         onTimeEnd: () => {
-          window.location.replace(REDIRECT_URI)
+          window.location.replace(
+            ROOT.getAttribute('data-redirect_url') ||
+              window.location.origin + '/login'
+          )
         },
       })
     },
@@ -56,17 +63,21 @@ export const PasswordResetPage = () => {
       <span className='my-10 block h-1 w-9 rounded-full bg-blue-700'></span>
       <FormProvider {...methods}>
         <form
+          ref={parent}
           onSubmit={methods.handleSubmit(onSubmit)}
           className='flex max-w-xl flex-col gap-3'
         >
           <PasswordPolicy />
-          <Button
+          <div className='flex items-center gap-3 rounded-lg bg-red-100 p-3 font-medium text-red-700'>
+            <AlertCircle /> <span>{errorTransformer(error)}</span>
+          </div>
+          <ButtonLoading
             type='submit'
-            // disabled={isBusy}
-            className='mt-5 block w-full rounded-full bg-blue-950 '
+            disabled={isPending}
+            className='mt-5 w-full rounded-full bg-blue-950 '
           >
             Change Password
-          </Button>
+          </ButtonLoading>
         </form>
       </FormProvider>
     </Wrapper>

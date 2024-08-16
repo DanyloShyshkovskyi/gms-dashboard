@@ -1,10 +1,11 @@
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { ArrowLeft } from 'lucide-react'
 import { FormProvider, useForm } from 'react-hook-form'
 
-import { InputController } from 'auth0-pages/components'
+import { InputController, WebAuthAlert } from 'auth0-pages/components'
 import { useWebAuth } from 'auth0-pages/provider'
 
-import { Button } from 'shared/ui/button'
+import { Button, ButtonLoading } from 'shared/ui/button'
 
 interface Inputs {
   email: string
@@ -14,6 +15,7 @@ const PasswordRecovery = () => {
   const { setMode, changePassword, isBusy } = useWebAuth()
 
   const methods = useForm<Inputs>()
+  const [parent] = useAutoAnimate()
 
   const onSubmit = (data: any) => {
     changePassword(data)
@@ -25,6 +27,7 @@ const PasswordRecovery = () => {
       <span className='my-10 block h-1 w-9 rounded-full bg-blue-700'></span>
       <FormProvider {...methods}>
         <form
+          ref={parent}
           onSubmit={methods.handleSubmit(onSubmit)}
           className='flex flex-col gap-3'
         >
@@ -36,13 +39,14 @@ const PasswordRecovery = () => {
             type='email'
             rules={{ required: true }}
           />
-          <Button
+          <WebAuthAlert />
+          <ButtonLoading
             type='submit'
             disabled={isBusy}
-            className='mt-3 block w-full rounded-full bg-blue-950 '
+            className='mt-3 w-full rounded-full bg-blue-950 '
           >
             Log In
-          </Button>
+          </ButtonLoading>
           <div>
             <Button
               type='button'

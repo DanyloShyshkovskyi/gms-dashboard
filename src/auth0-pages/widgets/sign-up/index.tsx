@@ -1,9 +1,14 @@
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { FormProvider, useForm } from 'react-hook-form'
 
-import { InputController, PasswordPolicy } from 'auth0-pages/components'
+import {
+  InputController,
+  PasswordPolicy,
+  WebAuthAlert,
+} from 'auth0-pages/components'
 import { useWebAuth } from 'auth0-pages/provider'
 
-import { Button } from 'shared/ui/button'
+import { Button, ButtonLoading } from 'shared/ui/button'
 
 interface Inputs {
   email: string
@@ -20,6 +25,7 @@ interface Inputs {
 const SignUp = () => {
   const { signUp, isBusy, setMode } = useWebAuth()
   const methods = useForm<Inputs, string>({ mode: 'onChange' })
+  const [parent] = useAutoAnimate()
 
   const onSubmit = (form_data: Inputs) => {
     console.log('form_data', form_data)
@@ -32,6 +38,7 @@ const SignUp = () => {
       <span className='my-10 block h-1 w-9 rounded-full bg-blue-700'></span>
       <FormProvider {...methods}>
         <form
+          ref={parent}
           onSubmit={methods.handleSubmit(onSubmit)}
           className='flex max-w-xl flex-col gap-3'
         >
@@ -75,13 +82,14 @@ const SignUp = () => {
             type='number'
           />
           <PasswordPolicy inline />
-          <Button
+          <WebAuthAlert />
+          <ButtonLoading
             type='submit'
             disabled={isBusy}
-            className='mt-5 block w-full rounded-lg bg-blue-700 '
+            className='mt-5 w-full rounded-lg bg-blue-700 '
           >
             Sign Up
-          </Button>
+          </ButtonLoading>
           <span className='block text-sm text-gray-500'>
             Or sign into your company account (SSO)
           </span>

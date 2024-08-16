@@ -6,10 +6,22 @@ import SignUp from 'auth0-pages/widgets/sign-up'
 
 import { useDelayChange } from 'shared/hooks'
 
-const AuthComponents: Record<IMode, React.ComponentType> = {
-  'sign-up': SignUp,
-  'sign-in': SignIn,
-  'reset-password': PasswordRecovery,
+const AuthComponents: Record<
+  IMode,
+  { component: React.ComponentType; className: string }
+> = {
+  'sign-up': {
+    component: SignUp,
+    className: 'min-h-[700px]',
+  },
+  'sign-in': {
+    component: SignIn,
+    className: 'min-h-[700px]',
+  },
+  'reset-password': {
+    component: PasswordRecovery,
+    className: 'min-h-[700px]',
+  },
 }
 
 const Switcher = ({ mode }: { mode: IMode }) => {
@@ -19,7 +31,7 @@ const Switcher = ({ mode }: { mode: IMode }) => {
     return null
   }
 
-  const AuthComponent = AuthComponents[delayedMode]
+  const AuthComponent = AuthComponents[delayedMode].component
 
   if (!AuthComponent) {
     return null
@@ -32,7 +44,7 @@ export const UniversalLoginPage = () => {
   const { mode } = useWebAuth()
 
   return (
-    <Wrapper>
+    <Wrapper className={AuthComponents[mode].className}>
       <Switcher mode={mode} />
     </Wrapper>
   )

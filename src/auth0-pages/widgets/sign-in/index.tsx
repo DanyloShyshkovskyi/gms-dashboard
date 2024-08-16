@@ -1,9 +1,10 @@
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { FormProvider, useForm } from 'react-hook-form'
 
 import { InputController, WebAuthAlert } from 'auth0-pages/components'
 import { useWebAuth } from 'auth0-pages/provider'
 
-import { Button } from 'shared/ui/button'
+import { Button, ButtonLoading } from 'shared/ui/button'
 import { Separator } from 'shared/ui/separator'
 
 interface Inputs {
@@ -14,6 +15,7 @@ interface Inputs {
 const SignIn = () => {
   const { login, isBusy, setMode } = useWebAuth()
   const modifies = useForm<Inputs>()
+  const [parent] = useAutoAnimate()
 
   const onSubmit = ({ email, password }: Inputs) => {
     login({
@@ -23,12 +25,13 @@ const SignIn = () => {
   }
 
   return (
-    <div className='grid lg:grid-cols-2'>
+    <div className='grid gap-10 lg:grid-cols-2'>
       <div>
         <h1 className='text-7xl font-bold'>Welcome back!</h1>
         <span className='my-10 block h-1 w-9 rounded-full bg-blue-700'></span>
         <FormProvider {...modifies}>
           <form
+            ref={parent}
             onSubmit={modifies.handleSubmit(onSubmit)}
             className='flex max-w-xl flex-col gap-3'
           >
@@ -58,19 +61,20 @@ const SignIn = () => {
               </Button>
             </div>
 
-            <Button
+            <WebAuthAlert />
+
+            <ButtonLoading
               type='submit'
               disabled={isBusy}
-              className='mt-5 block w-full rounded-full bg-blue-950 '
+              className='mt-5 w-full rounded-full bg-blue-950 '
             >
               Log In
-            </Button>
+            </ButtonLoading>
             <span className='mt-3 block text-center text-gray-500'>
               Or sign into your company account (SSO)
             </span>
           </form>
-        </FormProvider>
-        <WebAuthAlert sx={{ mt: 3 }} />
+        </FormProvider>{' '}
       </div>
 
       <div>
